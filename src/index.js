@@ -19,15 +19,18 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div>Error: {this.state.errorMessage}</div>;
+    }
 
-    return (
-      <div>
-        Latitude: { this.state.lat } <br />
-        { this.state.errorMessage ? Error: {this.state.errorMessage} : "" }
-      </div>
-      // <br />
-      //{ this.state.errorMessage ? <p style="color: red;">{this.state.errorMessage}</p> : "" }
-    )
+    if (!this.state.errorMessage && this.state.lat) {
+      return <div>Latitude: { this.state.lat }</div> ;
+    }
+
+    if (!this.state.errorMessage && !this.state.lat) {
+      return <div>Loading!!!</div>
+    }
+    
   }
 }
 
